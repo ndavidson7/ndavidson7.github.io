@@ -3,22 +3,23 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
+
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minimal Portfolio</title>
-    <meta
-      name="description"
-      content="Minimal static portfolio built with Astro and Tailwind CSS."
-    />
-  </head>
-  <body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
-    <Header />
-    <main class="pt-24">
-      <slot />
-    </main>
-    <Footer />
-    <script type="module" src="/utils/scrollReveal.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Minimal Portfolio</title>
+		<meta
+			name="description"
+			content="Minimal static portfolio built with Astro and Tailwind CSS."
+		/>
+	</head>
+	<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
+		<Header />
+		<main class="pt-24">
+			<slot />
+		</main>
+		<Footer />
+		<script type="module" src="/utils/scrollReveal.js"></script>
+	</body>
 </html>
