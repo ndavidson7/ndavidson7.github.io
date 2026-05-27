@@ -1,75 +1,57 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import BlogPreviewCard from '../components/BlogPreviewCard.astro';
+// import BlogPreviewCard from '../components/BlogPreviewCard.astro';
 
 const featuredProjects = [
 	{
-		title: 'Edge-friendly portfolio',
-		description: 'A static-first portfolio experience built for fast loading and subtle motion.',
-		tags: ['Astro', 'Tailwind', 'Static'],
-		// demoLink: "#projects",
-		// repoLink: "#",
+		title: 'Clip and Ship',
+		description:
+			'A Python script to automate the process of downloading, concatenating, minimally editing, and uploading Twitch clips to YouTube.',
+		tags: ['Python', 'FFmpeg', 'Twitch API', 'YouTube API'],
+		demoLink: 'https://youtu.be/yDiupoXFduM?si=OCPRQBSag14_cyGf',
+		repoLink: 'https://github.com/ndavidson7/clip-and-ship',
 	},
 	{
-		title: 'Minimal UI toolkit',
-		description: 'A set of reusable UI patterns with calm spacing, soft accents, and hover depth.',
-		tags: ['UX', 'Design', 'Components'],
-		demoLink: '#projects',
-		repoLink: '#',
+		title: 'Symphony Scramble',
+		description:
+			"Music-oriented platformer developed as a group project for UVA's Computer Game Design course.",
+		tags: ['C#', '.NET', 'MonoGame'],
+		repoLink: 'https://github.com/ndavidson7/symphony-scramble',
 	},
 	{
-		title: 'Writing system',
-		description: 'A lightweight blog teaser layout with clean typography and preview cards.',
-		tags: ['Blog', 'Copywriting', 'Static'],
-		demoLink: '#blog',
-		repoLink: '#',
+		title: 'Ride-a-long',
+		description:
+			'Carpooling web app designed to connect road trip drivers with people looking for a ride.',
+		tags: [
+			'Laravel',
+			'PHP',
+			'Tailwind',
+			'MySQL',
+			'Docker',
+			'JavaScript',
+			'AlpineJS',
+			'Livewire',
+			'Vite',
+			'WebSockets',
+		],
+		repoLink: 'https://github.com/ndavidson7/ride-a-long/tree/convert-to-tallstack',
 	},
 ];
 
-const latestPosts = [
-	{
-		title: 'Static-first design systems',
-		excerpt:
-			'How to translate minimal brand styling into a static website that feels polished and fast.',
-		href: '#blog',
-		date: 'May 2026',
-	},
-	{
-		title: 'Progressive reveals for calm layouts',
-		excerpt:
-			'A simple approach to scroll motion that keeps interaction light and content readable.',
-		href: '#blog',
-		date: 'Apr 2026',
-	},
-	{
-		title: 'Why Astro for portfolios',
-		excerpt:
-			'Choosing Astro for edge deployment, component-driven pages, and static content management.',
-		href: '#blog',
-		date: 'Mar 2026',
-	},
-];
+// const latestPosts = [];
 ---
 
 <MainLayout>
 	<section id="home" class="px-5 pt-28 pb-20 sm:pt-32 sm:pb-28">
 		<div class="mx-auto max-w-5xl">
 			<div data-reveal class="space-y-8">
-				<span
-					class="inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-sm font-semibold tracking-[0.35em] text-cyan-200 uppercase"
-				>
-					Minimal static portfolio
-				</span>
 				<h1
 					class="max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
 				>
-					I build minimalist, modular homepages with progressive reveal motion.
+					Hi, I'm Nicholas, an eager learner and occasional problem solver.
 				</h1>
-				<p class="max-w-2xl text-lg leading-8 text-slate-300">
-					A calm portfolio concept using Astro and Tailwind v4. Static by default, edge-ready, and
-					designed for clarity.
-				</p>
+				<p class="max-w-2xl text-lg leading-8 text-slate-300">Something something</p>
 				<div class="flex flex-wrap gap-4">
 					<a
 						href="#projects"
@@ -93,27 +75,29 @@ const latestPosts = [
 			<div data-reveal class="space-y-6">
 				<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">About</p>
 				<h2 class="text-3xl font-semibold text-white sm:text-4xl">
-					Simple structure, thoughtful motion.
+					Self-titled software generalist
 				</h2>
 				<p class="max-w-2xl text-base leading-8 text-slate-300">
-					This homepage is designed to feel quiet and intentional. Every section uses clean spacing,
-					subtle hover effects, and reveal animations that keep attention focused on content.
+					With an education in computer science and professional experience in software development,
+					I have exposure to a wide variety of technologies and am always excited to pick up new
+					skills and tools. To that end, I enjoy working on projects of all shapes and sizes and
+					have a proven ability to quickly learn and contribute to new codebases and domains.
 				</p>
 			</div>
 
-			<div data-reveal
+			<div
+				data-reveal
 				class="rounded-4xl border border-slate-800/80 bg-slate-950/70 p-8 shadow-xl shadow-slate-950/20"
 			>
 				<div class="space-y-6">
 					<div>
 						<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">Focus areas</p>
-						<h3 class="mt-3 text-xl font-semibold text-white">Edge-ready static work</h3>
+						<h3 class="mt-3 text-xl font-semibold text-white">My Expertise</h3>
 					</div>
 					<ul class="space-y-3 text-slate-300">
-						<li>• Static-first landing page experiences</li>
-						<li>• Modular cards and content blocks</li>
-						<li>• Smooth reveal animation with minimal runtime</li>
-						<li>• Calm palette with blue/cyan accent</li>
+						<li>• C# and .NET</li>
+						<li>• SQL</li>
+						<li>• Python</li>
 					</ul>
 				</div>
 			</div>
@@ -127,12 +111,12 @@ const latestPosts = [
 					<div>
 						<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">Featured Projects</p>
 						<h2 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">
-							A curated set of static-first work.
+							Some examples of my work.
 						</h2>
 					</div>
-					<a href="#projects" class="text-sm font-medium text-cyan-300 transition hover:text-white"
+					<!-- <a href="#projects" class="text-sm font-medium text-cyan-300 transition hover:text-white"
 						>See more anchors →</a
-					>
+					> -->
 				</div>
 				<div class="grid gap-6 lg:grid-cols-3">
 					{featuredProjects.map((project) => <ProjectCard {...project} />)}
@@ -141,7 +125,7 @@ const latestPosts = [
 		</div>
 	</section>
 
-	<section id="blog" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
+	<!-- <section id="blog" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto max-w-6xl">
 			<div data-reveal class="space-y-8">
 				<div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -160,7 +144,7 @@ const latestPosts = [
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<section id="contact" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto max-w-5xl">
