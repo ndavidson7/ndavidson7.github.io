@@ -1,0 +1,51 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	tags?: string[];
+	repoLink?: string;
+	demoLink?: string;
+}
+
+const { title, description, tags = [], repoLink, demoLink } = Astro.props as Props;
+---
+
+<article
+	class="group rounded-4xl border border-slate-800/80 bg-slate-950/70 p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40 hover:bg-slate-900/90"
+>
+	<div class="space-y-4">
+		<div>
+			<h3 class="text-xl font-semibold text-white">{title}</h3>
+			<p class="mt-3 text-slate-300">{description}</p>
+		</div>
+		<div class="flex flex-wrap gap-2 text-xs text-cyan-100/80">
+			{tags.map((tag) => <span class="rounded-full bg-slate-800/80 px-3 py-1">{tag}</span>)}
+		</div>
+	</div>
+	<div class="mt-6 flex flex-wrap gap-3">
+		{
+			demoLink ? (
+				<a
+					href={demoLink}
+					target="_blank"
+					rel="noreferrer"
+					class="rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400"
+				>
+					Live
+				</a>
+			) : null
+		}
+		{
+			repoLink ? (
+				<a
+					href={repoLink}
+					target="_blank"
+					rel="noreferrer"
+					class="rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300/50 hover:text-white"
+				>
+					Source
+				</a>
+			) : null
+		}
+	</div>
+</article>
