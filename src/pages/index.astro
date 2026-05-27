@@ -1,6 +1,5 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import ScrollReveal from '../components/ScrollReveal.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import BlogPreviewCard from '../components/BlogPreviewCard.astro';
 
@@ -56,7 +55,7 @@ const latestPosts = [
 <MainLayout>
 	<section id="home" class="px-5 pt-28 pb-20 sm:pt-32 sm:pb-28">
 		<div class="mx-auto max-w-5xl">
-			<ScrollReveal class="space-y-8">
+			<div data-reveal class="space-y-8">
 				<span
 					class="inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-sm font-semibold tracking-[0.35em] text-cyan-200 uppercase"
 				>
@@ -85,13 +84,13 @@ const latestPosts = [
 						Get in touch
 					</a>
 				</div>
-			</ScrollReveal>
+			</div>
 		</div>
 	</section>
 
 	<section id="about" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
-			<ScrollReveal class="space-y-6">
+			<div data-reveal class="space-y-6">
 				<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">About</p>
 				<h2 class="text-3xl font-semibold text-white sm:text-4xl">
 					Simple structure, thoughtful motion.
@@ -100,9 +99,9 @@ const latestPosts = [
 					This homepage is designed to feel quiet and intentional. Every section uses clean spacing,
 					subtle hover effects, and reveal animations that keep attention focused on content.
 				</p>
-			</ScrollReveal>
+			</div>
 
-			<ScrollReveal
+			<div data-reveal
 				class="rounded-4xl border border-slate-800/80 bg-slate-950/70 p-8 shadow-xl shadow-slate-950/20"
 			>
 				<div class="space-y-6">
@@ -117,13 +116,13 @@ const latestPosts = [
 						<li>• Calm palette with blue/cyan accent</li>
 					</ul>
 				</div>
-			</ScrollReveal>
+			</div>
 		</div>
 	</section>
 
 	<section id="projects" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto max-w-6xl">
-			<ScrollReveal class="space-y-8">
+			<div data-reveal class="space-y-8">
 				<div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
 						<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">Featured Projects</p>
@@ -138,13 +137,13 @@ const latestPosts = [
 				<div class="grid gap-6 lg:grid-cols-3">
 					{featuredProjects.map((project) => <ProjectCard {...project} />)}
 				</div>
-			</ScrollReveal>
+			</div>
 		</div>
 	</section>
 
 	<section id="blog" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto max-w-6xl">
-			<ScrollReveal class="space-y-8">
+			<div data-reveal class="space-y-8">
 				<div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
 						<p class="text-sm tracking-[0.35em] text-cyan-300/80 uppercase">Latest Writing</p>
@@ -159,13 +158,13 @@ const latestPosts = [
 				<div class="grid gap-6 lg:grid-cols-3">
 					{latestPosts.map((post) => <BlogPreviewCard {...post} />)}
 				</div>
-			</ScrollReveal>
+			</div>
 		</div>
 	</section>
 
 	<section id="contact" class="border-t border-slate-800/80 px-5 py-20 sm:py-24">
 		<div class="mx-auto max-w-5xl">
-			<ScrollReveal>
+			<div data-reveal>
 				<div
 					class="rounded-4xl border border-slate-800/80 bg-slate-950/70 p-10 shadow-2xl shadow-slate-950/20"
 				>
@@ -196,7 +195,7 @@ const latestPosts = [
 						</div>
 					</div>
 				</div>
-			</ScrollReveal>
+			</div>
 		</div>
 	</section>
 </MainLayout>

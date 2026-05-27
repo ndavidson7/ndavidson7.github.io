@@ -20,6 +20,8 @@ import Footer from '../components/Footer.astro';
 			<slot />
 		</main>
 		<Footer />
-		<script type="module" src="/utils/scrollReveal.js"></script>
 	</body>
+	<script>
+		import '../scripts/reveal.ts';
+	</script>
 </html>
