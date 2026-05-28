@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  merge_group:
+  pull_request:
+
+# Automatically cancel in-progress actions on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # access to check out code and install dependencies
+
+jobs:
+  astrocheck:
+    name: Check for type issues with Astro check
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: true
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install
+
+      - name: Run Check
+        run: npm run check
+  eslint:
+    name: Check for code issues with ESLint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Tools & Dependencies
+        uses: ./.github/actions/install
+
+      - name: Lint Code
+        run: npm run lint

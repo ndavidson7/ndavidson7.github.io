@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
+    "check": "astro check",
     "astro": "astro",
     "lint": "eslint ."
   },
@@ -29,5 +30,6 @@
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript-eslint": "^8.59.4"
-  }
+  },
+  "packageManager": "npm@11.15.0"
 }
