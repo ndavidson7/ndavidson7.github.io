@@ -3,15 +3,23 @@
 ---
 
 <header
-	class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-lg"
+	class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-lg [anchor-name:--header]"
 >
 	<div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
 		<a href="#home" class="text-base font-semibold tracking-tight text-white">Nicholas Davidson</a>
-		<nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-			<a href="#about" class="transition hover:text-white">About</a>
-			<a href="#projects" class="transition hover:text-white">Projects</a>
-			<!-- <a href="#blog" class="transition hover:text-white">Writing</a> -->
-			<a href="#contact" class="transition hover:text-white">Contact</a>
+		<nav id="nav-menu" aria-label="Main navigation" role="navigation">
+			<button class="" aria-controls="nav-menu-items" popovertarget="nav-menu-items"> ☰ </button>
+			<ul
+				id="nav-menu-items"
+				popover
+				class="fixed inset-[unset] z-10 w-full max-w-sm flex-col items-center gap-8 text-sm text-slate-300 [position-anchor:--header] [position-area:bottom_span-left] [:popover-open]:flex"
+				aria-label="Navigation menu"
+			>
+				<li><a href="#about" class="transition hover:text-white">About</a></li>
+				<li><a href="#projects" class="transition hover:text-white">Projects</a></li>
+				<!-- <li><a href="#blog" class="transition hover:text-white">Writing</a></li> -->
+				<li><a href="#contact" class="transition hover:text-white">Contact</a></li>
+			</ul>
 		</nav>
 	</div>
 </header>
