@@ -5,10 +5,28 @@
 <header
 	class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-lg [anchor-name:--header]"
 >
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+	<div class="mx-auto flex items-center justify-between px-5 py-4">
 		<a href="#home" class="text-base font-semibold tracking-tight text-white">Nicholas Davidson</a>
-		<nav id="nav-menu" aria-label="Main navigation" role="navigation">
-			<button class="" aria-controls="nav-menu-items" popovertarget="nav-menu-items"> ☰ </button>
+		<nav
+			id="nav-menu"
+			aria-label="Main navigation"
+			role="navigation"
+			class="inline-flex items-center justify-center"
+		>
+			<button
+				class="group relative size-4 cursor-pointer *:absolute *:top-1/2 *:left-1/2 *:h-0.5 *:w-full *:-translate-1/2 *:rounded-sm *:bg-white *:transition"
+				aria-controls="nav-menu-items"
+				popovertarget="nav-menu-items"
+			>
+				<span class="sr-only!">Menu</span>
+				<span
+					class="top-1/4! group-[:has(+_:popover-open)]:top-1/2! group-[:has(+_:popover-open)]:rotate-45"
+				></span>
+				<span class="group-[:has(+_:popover-open)]:opacity-0"></span>
+				<span
+					class="top-3/4! group-[:has(+_:popover-open)]:top-1/2! group-[:has(+_:popover-open)]:-rotate-45"
+				></span>
+			</button>
 			<ul
 				id="nav-menu-items"
 				popover
