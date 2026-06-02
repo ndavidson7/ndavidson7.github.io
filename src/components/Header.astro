@@ -30,7 +30,7 @@
 			<ul
 				id="nav-menu-items"
 				popover
-				class="fixed inset-[unset] hidden min-h-full w-full max-w-sm translate-x-full flex-col items-center gap-8 bg-slate-950 py-8 text-lg font-bold text-slate-100 uppercase opacity-0 transition-all transition-discrete duration-500 [position-anchor:--header] [position-area:bottom_span-left] open:flex open:translate-x-0 open:opacity-100 starting:open:translate-x-full starting:open:opacity-0"
+				class="fixed inset-[unset] hidden min-h-full w-full max-w-sm translate-x-full flex-col items-center gap-8 bg-slate-950 py-8 text-lg font-bold text-slate-100 uppercase transition transition-discrete duration-500 [position-anchor:--header] [position-area:bottom_span-left] open:flex open:translate-x-0 starting:open:translate-x-full"
 				aria-label="Navigation menu"
 			>
 				<li><a href="#about" class="transition hover:text-white">About</a></li>
@@ -41,3 +41,12 @@
 		</nav>
 	</div>
 </header>
+<script>
+	const popover = document.getElementById('nav-menu-items');
+	// Close the menu when a link is clicked
+	document.querySelectorAll('#nav-menu-items a').forEach((link) => {
+		link.addEventListener('click', () => {
+			popover?.hidePopover();
+		});
+	});
+</script>
