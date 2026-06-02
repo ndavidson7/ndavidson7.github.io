@@ -30,13 +30,31 @@
 			<ul
 				id="nav-menu-items"
 				popover
-				class="fixed inset-[unset] hidden min-h-full w-full max-w-sm translate-x-full flex-col items-center gap-8 bg-slate-950 py-8 text-lg font-bold text-slate-100 uppercase transition transition-discrete duration-500 [position-anchor:--header] [position-area:bottom_span-left] open:flex open:translate-x-0 starting:open:translate-x-full"
+				class="fixed inset-[unset] hidden min-h-full w-full translate-x-full flex-col items-center gap-8 bg-slate-950 py-8 text-lg font-bold text-slate-100 uppercase transition transition-discrete duration-500 [position-anchor:--header] [position-area:bottom_span-left] open:flex open:translate-x-0 sm:max-w-sm starting:open:translate-x-full"
 				aria-label="Navigation menu"
 			>
-				<li><a href="#about" class="transition hover:text-white">About</a></li>
-				<li><a href="#projects" class="transition hover:text-white">Projects</a></li>
-				<!-- <li><a href="#blog" class="transition hover:text-white">Writing</a></li> -->
-				<li><a href="#contact" class="transition hover:text-white">Contact</a></li>
+				<li>
+					<a
+						href="#about"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>About</a
+					>
+				</li>
+				<li>
+					<a
+						href="#projects"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>Projects</a
+					>
+				</li>
+				<!-- <li><a href="#blog" class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100">Writing</a></li> -->
+				<li>
+					<a
+						href="#contact"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>Contact</a
+					>
+				</li>
 			</ul>
 		</nav>
 	</div>
