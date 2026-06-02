@@ -1,15 +1,5 @@
 @import 'tailwindcss';
 
-@layer base {
-	html {
-		scroll-behavior: smooth;
-	}
-
-	body {
-		@apply min-h-screen bg-slate-950 text-slate-100;
-	}
-}
-
 @media (prefers-reduced-motion: no-preference) {
 	[data-reveal] {
 		--reveal-duration: 0.5s;

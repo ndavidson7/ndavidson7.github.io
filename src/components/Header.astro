@@ -3,15 +3,83 @@
 ---
 
 <header
-	class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-lg"
+	class="fixed inset-x-0 top-0 z-50 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-lg
+		[anchor-name:--header]"
 >
-	<div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-		<a href="#home" class="text-base font-semibold tracking-tight text-white">Nicholas Davidson</a>
-		<nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-			<a href="#about" class="transition hover:text-white">About</a>
-			<a href="#projects" class="transition hover:text-white">Projects</a>
-			<!-- <a href="#blog" class="transition hover:text-white">Writing</a> -->
-			<a href="#contact" class="transition hover:text-white">Contact</a>
+	<div class="mx-auto flex items-center justify-between px-5 py-4">
+		<a href="#home" class="text-xl font-semibold tracking-tight text-white">Nicholas Davidson</a>
+		<nav
+			id="nav-menu"
+			aria-label="Main navigation"
+			role="navigation"
+			class="inline-flex items-center justify-center"
+		>
+			<button
+				class="group relative size-4 cursor-pointer *:absolute *:top-1/2 *:left-1/2 *:h-0.5 *:w-full
+					*:-translate-1/2 *:rounded-sm *:bg-white *:transition sm:hidden"
+				aria-controls="nav-menu-items"
+				popovertarget="nav-menu-items"
+			>
+				<span class="sr-only!">Menu</span>
+				<span
+					class="top-1/4! group-[:has(+_:popover-open)]:top-1/2!
+						group-[:has(+_:popover-open)]:rotate-45"
+				></span>
+				<span class="group-[:has(+_:popover-open)]:opacity-0"></span>
+				<span
+					class="top-3/4! group-[:has(+_:popover-open)]:top-1/2!
+						group-[:has(+_:popover-open)]:-rotate-45"
+				></span>
+			</button>
+			<ul
+				id="nav-menu-items"
+				popover
+				class="fixed inset-[unset] hidden min-h-full w-full translate-x-full flex-col items-center
+					gap-8 bg-slate-950 py-8 text-lg font-bold text-slate-100 uppercase transition
+					transition-discrete duration-500 [position-anchor:--header]
+					[position-area:bottom_span-left] open:flex open:translate-x-0 sm:static sm:flex
+					sm:min-h-auto sm:w-auto sm:translate-x-0 sm:flex-row sm:py-0 sm:text-base sm:font-medium
+					sm:normal-case sm:transition-none starting:open:translate-x-full"
+				aria-label="Navigation menu"
+			>
+				<li>
+					<a
+						href="#about"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5
+							before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform
+							before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>About</a
+					>
+				</li>
+				<li>
+					<a
+						href="#projects"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5
+							before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform
+							before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>Projects</a
+					>
+				</li>
+				<!-- <li><a href="#blog" class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100">Writing</a></li> -->
+				<li>
+					<a
+						href="#contact"
+						class="relative transition before:absolute before:bottom-0 before:left-0 before:h-0.5
+							before:w-full before:scale-x-0 before:bg-slate-100 before:transition-transform
+							before:duration-300 before:content-[''] hover:text-white hover:before:scale-x-100"
+						>Contact</a
+					>
+				</li>
+			</ul>
 		</nav>
 	</div>
 </header>
+<script>
+	const popover = document.getElementById('nav-menu-items');
+	// Close the menu when a link is clicked
+	document.querySelectorAll('#nav-menu-items a').forEach((link) => {
+		link.addEventListener('click', () => {
+			popover?.hidePopover();
+		});
+	});
+</script>
