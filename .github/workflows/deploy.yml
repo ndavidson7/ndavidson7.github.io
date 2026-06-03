@@ -4,7 +4,6 @@ on:
   workflow_run:
     workflows: ["CI"]
     types: [completed]
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -51,4 +50,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          environment: ${{ github.ref_name != 'main' && github.ref_name || '' }}
+          environment: ${{ github.ref_name != 'main' && 'staging' || '' }}
