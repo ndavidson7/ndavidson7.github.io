@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  group: ${{ github.ref_name != 'main' && 'staging' || 'production' }}
   cancel-in-progress: true
 
 permissions:
@@ -34,10 +34,12 @@ jobs:
           name: assets
           path: dist/
           if-no-files-found: error
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name != 'main' && 'staging' || 'production' }}
+      url: ${{ github.ref_name != 'main' && 'https://portfolio-staging.nicholasdavidson7.workers.dev/' || 'https://www.nicholasdavidson.dev/' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -52,4 +54,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          environment: ${{ github.ref_name != 'main' && 'staging' || '' }}
+          environment: ${{ github.ref_name != 'main' && 'staging' || 'production' }}
