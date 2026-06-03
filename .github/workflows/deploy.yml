@@ -23,6 +23,8 @@ jobs:
     needs: check-ci
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - uses: ./.github/actions/setup
       - name: Build with Astro
         run: npm run build
@@ -37,6 +39,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - uses: ./.github/actions/setup
       - name: Download artifact from build step
         uses: actions/download-artifact@v8
