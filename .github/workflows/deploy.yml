@@ -1,42 +1,51 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Workers
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
-  push:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
     branches: [main]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
-  pages: write
   id-token: write
 
 jobs:
+  check-ci:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
   build:
+    needs: check-ci
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v6
-      - name: Install, build, and upload your site
-        uses: withastro/action@v6
-        # with:
-        # path: . # The root location of your Astro project inside the repository. (optional)
-        # node-version: 24 # The specific version of Node that should be used to build your site. Defaults to 22. (optional)
-        # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
-        # build-cmd: pnpm run build # The command to run to build your site. Runs the package build script/task by default. (optional)
-        # env:
-        # PUBLIC_POKEAPI: 'https://pokeapi.co/api/v2' # Use single quotation marks for the variable value. (optional)
+      - uses: ./.github/actions/setup
+      - name: Build with Astro
+        run: npm run build
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v7
+        with:
+          name: assets
+          path: dist/
+          if-no-files-found: error
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+      - uses: ./.github/actions/setup
+      - name: Download artifact from build step
+        uses: actions/download-artifact@v8
+        with:
+          name: assets
+          path: dist/
+      - name: Deploy to Cloudflare Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          environment: ${{ github.ref_name != 'main' && github.ref_name || '' }}

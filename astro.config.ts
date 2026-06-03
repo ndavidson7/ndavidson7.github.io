@@ -11,6 +11,6 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 	},
 
-	site: 'https://ndavidson7.github.io',
+	site: 'https://www.nicholasdavidson.dev',
 	integrations: [partytown()],
 });
