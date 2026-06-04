@@ -1,5 +1,5 @@
-name: Setup repository
-description: Pulls repository, sets up Node.js, and installs dependencies
+name: Setup Node and install dependencies
+description: Sets up Node.js and installs Node package dependencies.
 
 runs:
   using: composite
