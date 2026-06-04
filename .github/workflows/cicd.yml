@@ -1,0 +1,92 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Automatically cancel in-progress actions on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # access to check out code and install dependencies
+
+jobs:
+  astrocheck:
+    name: Check for type issues with Astro check
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: true
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - name: Run check
+        run: npm run check
+  eslint:
+    name: Check for code issues with ESLint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - name: Lint code
+        run: npm run lint
+  prettier:
+    name: Check for stylistic issues with Prettier
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - name: Check code formatting
+        run: npx prettier . --check
+  build:
+    name: Build the project with Astro
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - name: Build with Astro
+        run: npm run build
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v7
+        with:
+          name: assets
+          path: dist/
+          if-no-files-found: error
+  deploy:
+    name: Deploy to Cloudflare Worker
+    needs:
+      - astrocheck
+      - eslint
+      - prettier
+      - build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref_name != 'main' && 'staging' || 'production' }}
+      cancel-in-progress: true
+    environment:
+      name: ${{ github.ref_name != 'main' && 'staging' || 'production' }}
+      url: ${{ github.ref_name != 'main' && 'https://portfolio-staging.nicholasdavidson7.workers.dev/' || 'https://www.nicholasdavidson.dev/' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - uses: ./.github/actions/setup
+      - name: Download artifact from build step
+        uses: actions/download-artifact@v8
+        with:
+          name: assets
+          path: dist/
+      - name: Deploy to Cloudflare Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          environment: ${{ github.ref_name != 'main' && 'staging' || 'production' }}

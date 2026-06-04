@@ -11,6 +11,10 @@
 		},
 		"production": {
 			"workers_dev": false,
+			"route": {
+				"pattern": "www.nicholasdavidson.dev",
+				"custom_domain": true,
+			},
 		},
 	},
 }
