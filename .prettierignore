@@ -3,5 +3,3 @@ node_modules
 .github
 *.md
 *.mdx
-# There is a bug in Astro's Prettier plugin that fails to parse the GTag component correctly, so we need to ignore it for now.
-src/components/GTag.astro
